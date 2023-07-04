@@ -65,4 +65,28 @@ public class ChallengeTest {
 
         Assertions.assertThat(result.size()).isEqualTo(2);
     }
+    @Test
+    public void registerChallenge() {
+        String name = "운동하기";
+        String adid1 = "aadd-ffff-eeee-gggg";
+        String uuid1 = "aadd-ffff-eeee-gggg-fjfkjednfjkl";
+
+        User user1 = User.builder()
+                .adid(adid1)
+                .uuid(uuid1).build();
+        userRepository.save(user1);
+
+        User user = userRepository.findByUserUuId(uuid1).get();
+
+        Challenge challenge1 = Challenge.builder()
+                    .name(name)
+                    .user(user)
+                    .build();
+
+        challengeRepository.save(challenge1);
+
+        Challenge challenge2 = challengeRepository.findByNameAndUserUuId(uuid1, name).get();
+
+        Assertions.assertThat(challenge1.getName()).isEqualTo(challenge2.getName());
+    }
 }
