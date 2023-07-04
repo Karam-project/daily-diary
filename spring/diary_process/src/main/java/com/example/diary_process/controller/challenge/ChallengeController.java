@@ -1,5 +1,6 @@
 package com.example.diary_process.controller.challenge;
 
+import com.example.diary_process.controller.challenge.form.ChallengeRegisterForm;
 import com.example.diary_process.entity.challenge.Challenge;
 import com.example.diary_process.service.challenge.ChallengeService;
 import lombok.extern.slf4j.Slf4j;
@@ -21,4 +22,10 @@ public class ChallengeController {
     public List<Challenge> findChallengeListById(@RequestHeader("AdId") String adId){
         return challengeService.findChallengeListById(adId);
     }
+
+    @PostMapping("/register")
+    public void registerChallenge(@RequestBody ChallengeRegisterForm challengeRegisterForm){
+        challengeService.registerChallenge(challengeRegisterForm.getName(), challengeRegisterForm.getAdId(), challengeRegisterForm.getUuId());
+    }
+
 }
