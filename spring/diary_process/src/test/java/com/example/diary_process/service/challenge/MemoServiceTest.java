@@ -66,6 +66,32 @@ class MemoServiceTest {
 
     }
 
+    @Test
+    void findMemo() {
+        User user = User.builder()
+                .adid("fjkh-ffkdh-fnfkdl")
+                .uuid("1234-5555-6666")
+                .build();
+        userRepository.save(user);
+
+        Challenge challenge = Challenge.builder()
+                .name("일기")
+                .user(user)
+                .build();
+        challengeRepository.save(challenge);
+
+        Memo memo = Memo.builder().challenge(challenge)
+                .stickerId(1L)
+                .title("메모")
+                .content("메모일기")
+                .build();
+        memoRepository.save(memo);
+
+        Memo memo1 = memoService.findMemo(memo.getId());
+
+        Assertions.assertThat(memo1.getContent()).isEqualTo("메모일기");
+    }
+
 
     @Test
     void createMemo() {

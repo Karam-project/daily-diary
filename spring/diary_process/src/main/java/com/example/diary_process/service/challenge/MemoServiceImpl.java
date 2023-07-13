@@ -27,6 +27,16 @@ public class MemoServiceImpl implements MemoService {
         return memoRepository.findByMemoListChallengeId(challengeId);
     }
 
+    @Override
+    public Memo findMemo(Long memoId) {
+        Optional<Memo> maybeMemo = memoRepository.findById(memoId);
+        if(maybeMemo.isEmpty()){
+            log.info("memoId is Empty");
+        }
+        Memo memo = maybeMemo.get();
+
+        return memo;
+    }
 
     @Override
     public String createMemo(Long challengeId, Long stickerId, String title, String content) {

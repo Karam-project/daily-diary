@@ -23,6 +23,10 @@ public class MemoController {
         return memoService.findMemoList(challengeId);
     }
 
+    @GetMapping("/{memoId}")
+    public Memo findMemo(@RequestParam(name = "memoId", required = false) Long memoId){
+        return memoService.findMemo(memoId);
+    }
 
     @PostMapping("/register")
     public String createMemo(@RequestBody MemoRegisterForm memoRegisterForm){

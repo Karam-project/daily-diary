@@ -10,6 +10,8 @@ public interface MemoService {
 
     public List<Memo> findMemoList(Long challengeId);
 
+    public Memo findMemo(Long challengeId);
+
     public String createMemo(Long challengeId, Long stickerId, String title, String content);
 
 }
