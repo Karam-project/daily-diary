@@ -76,4 +76,10 @@ public class MemoServiceImpl implements MemoService {
         return msg;
     }
 
+    @Override
+    public void deleteMemo(Long memoId) {
+        memoRepository.deleteById(memoId);
+    }
+
+
 }

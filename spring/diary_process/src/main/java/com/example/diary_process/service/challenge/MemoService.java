@@ -14,4 +14,6 @@ public interface MemoService {
 
     public String createMemo(Long challengeId, Long stickerId, String title, String content);
 
+    public void deleteMemo(Long memoId);
+
 }

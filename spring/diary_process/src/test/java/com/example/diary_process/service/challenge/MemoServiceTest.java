@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @SpringBootTest
@@ -118,4 +119,30 @@ class MemoServiceTest {
 
     }
 
+
+    @Test
+    void deleteMemo() {
+        User user = User.builder()
+                .adid("fjkh-ffkdh-fnfkdl")
+                .uuid("1234-5555-6666")
+                .build();
+        userRepository.save(user);
+
+        Challenge challenge = Challenge.builder()
+                .name("일기")
+                .user(user)
+                .build();
+        challengeRepository.save(challenge);
+
+        Memo memo = Memo.builder().challenge(challenge)
+                .stickerId(1L)
+                .title("메모")
+                .content("메모일기")
+                .build();
+        memoRepository.save(memo);
+
+        memoService.deleteMemo(memo.getId());
+
+        Assertions.assertThat(memoRepository.findById(memo.getId())).isEqualTo(Optional.empty());
+    }
 }

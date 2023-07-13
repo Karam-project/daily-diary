@@ -38,4 +38,9 @@ public class MemoController {
                 memoRegisterForm.getContent());
     }
 
+    @DeleteMapping("/{memoId}")
+    public void deleteMemo(@PathVariable("memoId") Long memoId){
+
+        memoService.deleteMemo(memoId);
+    }
 }
