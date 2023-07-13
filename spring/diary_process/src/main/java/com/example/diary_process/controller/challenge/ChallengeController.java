@@ -18,14 +18,22 @@ public class ChallengeController {
     @Autowired
     ChallengeService challengeService;
 
-    @GetMapping(value = "/", headers = "AdId")
-    public List<Challenge> findChallengeListById(@RequestHeader("AdId") String adId){
-        return challengeService.findChallengeListById(adId);
+    @GetMapping(value = "/")
+    public List<Challenge> findChallengeListById(@RequestParam("uuid") String uuid){
+        return challengeService.findChallengeListById(uuid);
     }
 
     @PostMapping("/register")
-    public void registerChallenge(@RequestBody ChallengeRegisterForm challengeRegisterForm){
-        challengeService.registerChallenge(challengeRegisterForm.getName(), challengeRegisterForm.getAdId(), challengeRegisterForm.getUuId());
+    public String registerChallenge(@RequestBody ChallengeRegisterForm challengeRegisterForm){
+        return challengeService.registerChallenge(
+                challengeRegisterForm.getName(),
+                challengeRegisterForm.getAdid(),
+                challengeRegisterForm.getUuid());
+    }
+
+    @DeleteMapping("/{challengeId}")
+    public void deleteChallenge(@PathVariable("challengeId") Long challengeId ){
+        challengeService.deleteChallenge(challengeId);
     }
 
 }
