@@ -1,6 +1,7 @@
 package com.example.diary_process.service.challenge;
 
 import com.example.diary_process.entity.challenge.Challenge;
+import com.example.diary_process.entity.challenge.Memo;
 import com.example.diary_process.entity.user.User;
 import com.example.diary_process.repository.challenge.ChallengeRepository;
 import com.example.diary_process.repository.challenge.MemoRepository;
@@ -10,6 +11,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.List;
 
 
 @SpringBootTest
@@ -34,6 +37,35 @@ class MemoServiceTest {
         challengeRepository.deleteAll();
         userRepository.deleteAll();
     }
+
+    @Test
+    void findMemoList() {
+
+        User user = User.builder()
+                .adid("fjkh-ffkdh-fnfkdl")
+                .uuid("1234-5555-6666")
+                .build();
+        userRepository.save(user);
+
+        Challenge challenge = Challenge.builder()
+                .name("일기")
+                .user(user)
+                .build();
+        challengeRepository.save(challenge);
+
+        Memo memo = Memo.builder().challenge(challenge)
+                .stickerId(1L)
+                .title("메모")
+                .content("메모일기")
+                .build();
+        memoRepository.save(memo);
+
+        List<Memo> memoList = memoService.findMemoList(challenge.getId());
+        System.out.println(memoList.get(0).getTitle());
+        Assertions.assertThat(memoList.size()).isEqualTo(1);
+
+    }
+
 
     @Test
     void createMemo() {

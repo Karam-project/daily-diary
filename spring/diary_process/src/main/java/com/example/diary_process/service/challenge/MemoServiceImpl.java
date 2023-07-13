@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @Slf4j
@@ -20,6 +21,12 @@ public class MemoServiceImpl implements MemoService {
 
     @Autowired
     ChallengeRepository challengeRepository;
+
+    @Override
+    public List<Memo> findMemoList(Long challengeId) {
+        return memoRepository.findByMemoListChallengeId(challengeId);
+    }
+
 
     @Override
     public String createMemo(Long challengeId, Long stickerId, String title, String content) {
