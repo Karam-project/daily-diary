@@ -8,6 +8,8 @@ import java.util.List;
 @Service
 public interface ChallengeService {
     public List<Challenge> findChallengeListById(String uuid);
-    public void registerChallenge(String name, String adid, String uuid);
+    public String registerChallenge(String name, String adid, String uuid);
+
+    public void deleteChallenge(Long challengeId);
 
 }
