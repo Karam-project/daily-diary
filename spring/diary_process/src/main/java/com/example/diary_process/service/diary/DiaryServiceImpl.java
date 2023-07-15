@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
@@ -47,8 +48,10 @@ public class DiaryServiceImpl implements DiaryService {
         }
 
         diaryRepository.save(diary);
-
-
     }
 
+    @Override
+    public List<Diary> list(String uuid) {
+        return diaryRepository.findAllByUuid(uuid);
+    }
 }

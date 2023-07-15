@@ -1,6 +1,7 @@
 package com.example.diary_process.service.diary;
 
 import com.example.diary_process.controller.diary.form.DiaryForm;
+import com.example.diary_process.entity.diary.Diary;
 import com.example.diary_process.entity.user.User;
 import com.example.diary_process.repository.diary.DiaryRepository;
 import com.example.diary_process.repository.user.UserRepository;
@@ -11,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @SpringBootTest
 public class DiaryServiceTest {
@@ -31,7 +33,6 @@ public class DiaryServiceTest {
 
     @Test
     void creatDiary() {
-
         String adid = "aabb-ffff-eeee-gggg";
         String uuid = "aabb-ffff-eeee-gggg-fjfkjednfjkl";
 
@@ -54,5 +55,16 @@ public class DiaryServiceTest {
                 diaryForm.getCreationDate(),
                 diaryForm.getFile()
         );
+    }
+
+    @Test
+    void list() {
+        String uuid = "aabb-ffff-eeee-gggg-fjfkjednfjkl";
+
+        List<Diary> diaryList = diaryService.list(uuid);
+
+        for (int i = 0; i < diaryList.size(); i++) {
+            System.out.println(diaryList.get(i).getContent());
+        }
     }
 }
