@@ -19,8 +19,8 @@ public class DiaryController {
     DiaryService diaryService;
 
     @PostMapping("/")
-    public void createDiary(@RequestBody DiaryForm diaryForm) {
-        diaryService.createDiary(
+    public void create(@RequestBody DiaryForm diaryForm) {
+        diaryService.create(
                 diaryForm.getUuid(),
                 diaryForm.getContent(),
                 diaryForm.getEmotion(),
@@ -32,6 +32,11 @@ public class DiaryController {
     @GetMapping("/")
     public List<Diary> list(@RequestParam("uuid") String uuid) {
         return diaryService.list(uuid);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable("id") Long id) {
+        diaryService.delete(id);
     }
 
 }
