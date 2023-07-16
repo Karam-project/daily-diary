@@ -34,4 +34,9 @@ public class DiaryController {
         return diaryService.list(uuid);
     }
 
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable("id") Long id) {
+        diaryService.delete(id);
+    }
+
 }

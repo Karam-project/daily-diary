@@ -54,4 +54,9 @@ public class DiaryServiceImpl implements DiaryService {
     public List<Diary> list(String uuid) {
         return diaryRepository.findAllByUuid(uuid);
     }
+
+    @Override
+    public void delete(Long id) {
+        diaryRepository.deleteById(id);
+    }
 }
