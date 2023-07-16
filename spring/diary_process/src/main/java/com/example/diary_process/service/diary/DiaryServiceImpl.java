@@ -56,6 +56,13 @@ public class DiaryServiceImpl implements DiaryService {
     }
 
     @Override
+    public Diary read(Long id) {
+        Diary diary = diaryRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("해당하는 Diary가 없습니다."));
+        return diary;
+    }
+
+    @Override
     public void delete(Long id) {
         diaryRepository.deleteById(id);
     }

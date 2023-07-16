@@ -5,6 +5,7 @@ import com.example.diary_process.entity.diary.Diary;
 import com.example.diary_process.entity.user.User;
 import com.example.diary_process.repository.diary.DiaryRepository;
 import com.example.diary_process.repository.user.UserRepository;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,5 +67,12 @@ public class DiaryServiceTest {
         for (int i = 0; i < diaryList.size(); i++) {
             System.out.println(diaryList.get(i).getContent());
         }
+    }
+
+    @Test
+    void read() {
+        Long id = 11L;
+        Diary diary = diaryService.read(id);
+        Assertions.assertThat(diary.getUser().getId()).isEqualTo(16L);
     }
 }
