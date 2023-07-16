@@ -24,7 +24,7 @@ public class DiaryServiceImpl implements DiaryService {
 
 
     @Override
-    public void createDiary(String uuid, String content, String emotion, LocalDate creationDate, MultipartFile file) {
+    public void create(String uuid, String content, String emotion, LocalDate creationDate, MultipartFile file) {
         User user = userRepository.findByUserUuId(uuid)
                 .orElseThrow(() -> new NoSuchElementException("해당하는 user가 없습니다."));
 

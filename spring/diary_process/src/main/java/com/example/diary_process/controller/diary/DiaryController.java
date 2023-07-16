@@ -19,8 +19,8 @@ public class DiaryController {
     DiaryService diaryService;
 
     @PostMapping("/")
-    public void createDiary(@RequestBody DiaryForm diaryForm) {
-        diaryService.createDiary(
+    public void create(@RequestBody DiaryForm diaryForm) {
+        diaryService.create(
                 diaryForm.getUuid(),
                 diaryForm.getContent(),
                 diaryForm.getEmotion(),

@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface DiaryService {
 
-    void createDiary(String uuid, String content, String emotion, LocalDate creationDate, MultipartFile file);
+    void create(String uuid, String content, String emotion, LocalDate creationDate, MultipartFile file);
     List<Diary> list(String uuid);
 }

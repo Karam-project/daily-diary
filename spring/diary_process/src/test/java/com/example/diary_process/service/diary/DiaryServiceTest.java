@@ -48,7 +48,7 @@ public class DiaryServiceTest {
 
         DiaryForm diaryForm = new DiaryForm(uuid, content, emotion, file, creationDate);
 
-        diaryService.createDiary(
+        diaryService.create(
                 diaryForm.getUuid(),
                 diaryForm.getContent(),
                 diaryForm.getEmotion(),
