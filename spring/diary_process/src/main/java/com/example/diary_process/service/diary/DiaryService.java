@@ -10,5 +10,6 @@ public interface DiaryService {
 
     void create(String uuid, String content, String emotion, LocalDate creationDate, MultipartFile file);
     List<Diary> list(String uuid);
+    Diary read(Long id);
     void delete(Long id);
 }

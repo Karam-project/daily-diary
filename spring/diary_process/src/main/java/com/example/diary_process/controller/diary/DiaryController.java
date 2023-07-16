@@ -34,6 +34,11 @@ public class DiaryController {
         return diaryService.list(uuid);
     }
 
+    @GetMapping("/{id}")
+    public Diary read(@PathVariable("id") Long id) {
+        return null;
+    }
+
     @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") Long id) {
         diaryService.delete(id);
