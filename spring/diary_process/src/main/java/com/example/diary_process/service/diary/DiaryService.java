@@ -12,4 +12,5 @@ public interface DiaryService {
     List<Diary> list(String uuid);
     Diary read(Long id);
     void delete(Long id);
+    void modify(Long id, String content, String emotion, LocalDate creationDate, MultipartFile file);
 }

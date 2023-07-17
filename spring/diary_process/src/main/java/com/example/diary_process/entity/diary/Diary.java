@@ -3,14 +3,12 @@ package com.example.diary_process.entity.diary;
 import com.example.diary_process.entity.user.User;
 import com.example.diary_process.utility.emotion.EmotionAttributeConverter;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 @Getter
+@Setter
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Diary {

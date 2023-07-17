@@ -44,4 +44,16 @@ public class DiaryController {
         diaryService.delete(id);
     }
 
+    @PutMapping("/{id}")
+    public void modify(@PathVariable("id") Long id,
+                       @RequestBody DiaryForm diaryForm) {
+        diaryService.modify(
+                id,
+                diaryForm.getContent(),
+                diaryForm.getEmotion(),
+                diaryForm.getCreationDate(),
+                diaryForm.getFile()
+                );
+    }
+
 }
