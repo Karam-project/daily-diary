@@ -1,6 +1,7 @@
 package com.example.diary_process.controller.challenge;
 
 import com.example.diary_process.controller.challenge.form.MemoRegisterForm;
+import com.example.diary_process.controller.challenge.request.MemoModify;
 import com.example.diary_process.entity.challenge.Memo;
 import com.example.diary_process.service.challenge.MemoService;
 import lombok.extern.slf4j.Slf4j;
@@ -37,6 +38,17 @@ public class MemoController {
                 memoRegisterForm.getTitle(),
                 memoRegisterForm.getContent());
     }
+
+    @PutMapping("/{memoId}")
+    public void modifyMemo(@PathVariable("memoId") Long memoId, @RequestBody MemoModify memoModify){
+
+        memoService.modifyMemo(
+                memoId,
+                memoModify.getStickerId(),
+                memoModify.getTitle(),
+                memoModify.getContent());
+    }
+
 
     @DeleteMapping("/{memoId}")
     public void deleteMemo(@PathVariable("memoId") Long memoId){
