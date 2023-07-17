@@ -36,7 +36,7 @@ public class DiaryController {
 
     @GetMapping("/{id}")
     public Diary read(@PathVariable("id") Long id) {
-        return null;
+        return diaryService.read(id);
     }
 
     @DeleteMapping("/{id}")
