@@ -77,6 +77,19 @@ public class MemoServiceImpl implements MemoService {
     }
 
     @Override
+    public void modifyMemo(Long memoId, Long stickerId, String title, String content) {
+        Optional<Memo> maybeMemo = memoRepository.findById(memoId);
+        if (maybeMemo.isEmpty()) {
+            log.info("Can't modify memo");
+        }
+        Memo memo = maybeMemo.get();
+        memo.setStickerId(stickerId);
+        memo.setTitle(title);
+        memo.setContent(content);
+        memoRepository.save(memo);
+    }
+
+    @Override
     public void deleteMemo(Long memoId) {
         memoRepository.deleteById(memoId);
     }
