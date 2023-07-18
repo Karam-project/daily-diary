@@ -66,4 +66,23 @@ public class DiaryServiceImpl implements DiaryService {
     public void delete(Long id) {
         diaryRepository.deleteById(id);
     }
+
+    @Override
+    public void modify(Long id, String content, String emotion, LocalDate creationDate, MultipartFile file) {
+        Diary diary = diaryRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("해당하는 diary가 없습니다."));
+
+        if (file == null) {
+            diary.setContent(content);
+            diary.setEmotion(EmotionStatus.ofEmotion(emotion));
+            diary.setCreationDate(creationDate);
+        } else {
+            diary.setContent(content);
+            diary.setEmotion(EmotionStatus.ofEmotion(emotion));
+            diary.setCreationDate(creationDate);
+            diary.setFileName(file.getOriginalFilename());
+        }
+
+        diaryRepository.save(diary);
+    }
 }
