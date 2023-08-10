@@ -3,6 +3,7 @@ package com.example.diary_process.controller.challenge;
 import com.example.diary_process.controller.challenge.form.ChallengeRegisterForm;
 import com.example.diary_process.entity.challenge.Challenge;
 import com.example.diary_process.service.challenge.ChallengeService;
+import com.example.diary_process.utility.split.JsonSplit;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,8 +20,9 @@ public class ChallengeController {
     ChallengeService challengeService;
 
     @GetMapping(value = "/")
-    public List<Challenge> findChallengeListById(@RequestParam("uuid") String uuid){
-        return challengeService.findChallengeListById(uuid);
+    public List<Challenge> findChallengeListById(@RequestParam(value = "uuid", required = false) String uuid){
+        String uuId = JsonSplit.splitData(uuid);
+        return challengeService.findChallengeListById(uuId);
     }
 
     @PostMapping("/register")
